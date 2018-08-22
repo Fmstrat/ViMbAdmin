@@ -140,6 +140,10 @@ class ViMbAdmin_Form_Mailbox_AddEdit extends ViMbAdmin_Form
         $submit = $this->createElement( 'submit' , 'save' )
             ->setLabel( _( 'Save' ) );
 
+        $this->createToken();
+        $token = $this->createElement( 'hidden' , 'token' )
+            ->setAttrib( 'value', $_SESSION['token'] );
+
         $this->addElement( $localPart )
             ->addElement( $domain )
             ->addElement( $name )
@@ -148,6 +152,7 @@ class ViMbAdmin_Form_Mailbox_AddEdit extends ViMbAdmin_Form
             ->addElement( $welcomeEmail )
             ->addElement( $alt_email )
             ->addElement( $ccWelcomeEmail )
+            ->addElement( $token )
             ->addElement( $submit );
 
         $this->setElementDecorators( array( 'ViewHelper' ) );

@@ -59,6 +59,9 @@ class MailboxController extends ViMbAdmin_Controller_PluginAction
      */
     public function preDispatch()
     {
+        if( $_SERVER['REQUEST_METHOD'] == 'POST' )
+            if (empty($_POST['token']) || (!empty($_POST['token']) && !strcmp($_SESSION['token'],$_POST['token'])==0))
+		exit();
         if( $this->getRequest()->getActionName() != 'cli-get-sizes'
                 && $this->getRequest()->getActionName() != 'cli-delete-pending'
                 && !$this->getMailbox() && !$this->getDomain() )

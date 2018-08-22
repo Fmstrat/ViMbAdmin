@@ -70,6 +70,18 @@ class ViMbAdmin_Form extends Twitter_Form
     }
 
     /**
+     * Creates a CSRF token
+     */
+     public function createToken()
+     {
+         if (function_exists('mcrypt_create_iv')) {
+             $_SESSION['token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+         } else {
+             $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+         }
+     }
+
+    /**
      * Adds element to actions display group.
      *
      * If view script is false than it proceed element like Twitter_Form::_addActionsDisplayGroupElement.
