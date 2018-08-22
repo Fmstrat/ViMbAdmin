@@ -508,4 +508,13 @@ class ViMbAdmin_Controller_Action extends OSS_Controller_Action
         return $log;
     }
 
+    /**
+     * Check if a POST token exists and if it is valid
+     */
+    protected function checkToken()
+    {
+        if( $_SERVER['REQUEST_METHOD'] == 'POST' )
+            if (empty($_POST['token']) || (!empty($_POST['token']) && !strcmp($_SESSION['token'],$_POST['token'])==0))
+		exit();
+    }
 }

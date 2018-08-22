@@ -79,6 +79,8 @@ class ViMbAdmin_Form extends Twitter_Form
          } else {
              $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
          }
+         return $this->createElement( 'hidden' , 'token' )
+            ->setAttrib( 'value', $_SESSION['token'] );
      }
 
     /**

@@ -140,9 +140,7 @@ class ViMbAdmin_Form_Mailbox_AddEdit extends ViMbAdmin_Form
         $submit = $this->createElement( 'submit' , 'save' )
             ->setLabel( _( 'Save' ) );
 
-        $this->createToken();
-        $token = $this->createElement( 'hidden' , 'token' )
-            ->setAttrib( 'value', $_SESSION['token'] );
+        $token = $this->createToken();
 
         $this->addElement( $localPart )
             ->addElement( $domain )
